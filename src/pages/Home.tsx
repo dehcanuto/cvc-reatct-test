@@ -1,7 +1,15 @@
 import React from 'react';
 
-export default function HomePage() {
+const HomePage = () => {
     return (
-        <p>HomePage</p>
+        <div className="App">
+            <header className="App-header">
+                <p>
+                 Home page
+                </p>
+            </header>
+        </div>
     );
 }
+
+export default HomePage;

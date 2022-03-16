@@ -1,11 +1,23 @@
-import { Routes as Switch, Route } from 'react-router-dom';
+import React from "react";
+import {
+  BrowserRouter as Router,
+  useRoutes,
+} from "react-router-dom";
 
 import HomePage from "./pages/Home";
 
-const Routes = () => (
-    <Switch>
-        <Route path="/" element={<HomePage/>} />
-    </Switch>
+const App = () => {
+  return useRoutes([
+    { path: "/", element: <HomePage /> },
+  ]);
+};
+
+const Routes = () => {
+  return (
+    <Router>
+      <App />
+    </Router>
   );
-  
+};
+
 export default Routes;
