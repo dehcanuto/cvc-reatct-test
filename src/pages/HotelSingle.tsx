@@ -1,15 +1,15 @@
 import React from 'react';
 
-const HomePage: React.FC = () => {
+const HotelSingle: React.FC = () => {
     return (
         <div className="App">
             <header className="App-header">
                 <p>
-                    Home page
+                    HotelSingle page
                 </p>
             </header>
         </div>
     );
 }
 
-export default HomePage;
+export default HotelSingle;
