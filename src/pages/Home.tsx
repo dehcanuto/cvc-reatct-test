@@ -7,7 +7,7 @@ import { getAllData } from '../lib/Hotels';
 
 const HomePage: React.FC = () => {
     const [cityID, setCityID] = useState<number>(cities[0].cityCode);
-    const [cityName, setCityName] = useState<string>();
+    const [cityName, setCityName] = useState<String>();
     const [hotels, setHotels] = useState<Hotel[]>([]);
 
     useEffect(() => {
