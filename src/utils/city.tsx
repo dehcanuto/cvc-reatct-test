@@ -1,4 +1,6 @@
-export const cities = [
+import { City } from "../interfaces/city";
+
+export const cities: City[] = [
     {
         cityCode: 1032,
         cityName: 'Porto Seguro'
