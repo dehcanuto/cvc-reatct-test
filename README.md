@@ -84,7 +84,7 @@ Nossa ideia é que o projeto possua três telas básicas que utilizarão a consu
 
 - [ ] Tela 1
 
-O cliente precisará fornecer o `ID_da_Cidade` e a aplicação irá retornar uma lista com os hotéis (consultando a primeira API), exibindo o nome do hotel, o nome da cidade e um link para poder consultar detalhes do hotel. 
+O cliente precisará fornecer o `ID_da_Cidade` e a aplicação irá retornar uma lista com os hotéis (consultando a primeira API), exibindo o *nome do hotel*, o *nome da cidade* e um *link para poder consultar detalhes do hotel*. 
 
 - [ ] Tela 2
 

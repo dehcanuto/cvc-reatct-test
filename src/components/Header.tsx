@@ -1,6 +1,6 @@
 import React from 'react';
 
-const Header: React.FC = () => {
+const Header: React.FC<{getCity:Function}> = ({getCity}) => {
     return (
         <div className="flex justify-center items-center pt-12 bg-gradient-to-r from-secondary to-blue-500">
             <div className="container mx-auto">
@@ -11,14 +11,18 @@ const Header: React.FC = () => {
                             Escolha a cidade para a <span className="text-primary">viagem dos seus sonhos</span>
                         </h1>
                     </div>
-                    <div className="max-w-xl bg-white shadow-lg rounded-lg p-4 mx-auto mt-8 -mb-5">
+                    <div className="max-w-xl bg-white shadow-lg rounded-lg py-4 px-3 mx-auto mt-8 -mb-5">
                         <div className="flex justify-between px-2 space-x-2 rounded-lg">
-                            <select className="flex-auto text-base text-gray-800 outline-none border-2 px-4 py-2 rounded-lg">
-                                <option value="1032" selected>Porto Seguro</option>
+                            <select
+                                defaultValue="1032"
+                                className="flex-auto text-base text-gray-800 outline-none border-2 border-b-4 border-gray-200 rounded-xl px-4 py-2"
+                                onChange={(e) => getCity(e.target.value)}
+                            >
+                                <option value="1032">Porto Seguro</option>
                                 <option value="7110">Rio de Janeiro</option>
                                 <option value="9626">São Paulo</option>
                             </select>
-                            <button className="flex bg-secondary text-white text-base font-bold rounded-lg px-8 py-2">
+                            <button className="rounded-2xl border-b-4 border-b-primary-500 bg-secondary py-3 px-8 font-bold text-white">
                                 Buscar
                             </button>
                         </div>
