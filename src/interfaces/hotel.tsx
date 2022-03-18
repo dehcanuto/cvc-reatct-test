@@ -3,7 +3,7 @@ interface Price {
     child: number
 }
 
-interface Rooms {
+export interface Rooms {
     roomID: number,
     categoryName: string,
     price: Price

@@ -11,15 +11,14 @@ export const getAllData = async (city_id: number) => {
     }
 };
 
-export const getSingle = async (hotel_id: number) => {
+export const getSingle = async (hotel_id: number | string | undefined) => {
     let response;
     try {
         response = await api.get(`/${hotel_id}`);
-        console.log('response', response);
         if (response.status !== 200) throw new Error('Erro ao exibir');
-        return response.data;
+        return response.data[0];
     } catch (error) {
-        console.log('error getAllData', error);
+        console.log('error getSingle', error);
         return Promise.reject(error);
     }
 };
