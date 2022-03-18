@@ -9,8 +9,9 @@ const HomePage: React.FC = () => {
     const [hotels, setHotels] = useState<Hotel[]>([]);
 
     useEffect(() => {
-        //const init = async () => setHotels(await getAllData(cityID));
-        //init();
+        const init = async () => setHotels(await getAllData(cityID));
+        init();
+        console.log('hotels', hotels);
     }, [cityID]);
 
     return (
@@ -18,8 +19,7 @@ const HomePage: React.FC = () => {
             <Header getCity={(e: number) => setCityID(e)} />
             <section className="container mx-auto pt-14">
                 <div className="grid grid-cols-1 sm:grid-cols-4 gap-4 items-center justify-center">
-                    <LoadCard />
-                    { hotels ? hotels?.map((item: Hotel) => <Card data={item}/>) : <LoadCard /> }
+                    { hotels.length ? hotels?.map((item: Hotel) => <Card data={item}/>) : <LoadCard /> }
                 </div>
             </section>
         </>
