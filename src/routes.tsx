@@ -5,10 +5,12 @@ import {
 } from "react-router-dom";
 
 import HomePage from "./pages/Home";
+import SinglePage from "./pages/HotelSingle";
 
 const App = () => {
   return useRoutes([
     { path: "/", element: <HomePage /> },
+    { path: "/:id", element: <SinglePage /> },
   ]);
 };
 
