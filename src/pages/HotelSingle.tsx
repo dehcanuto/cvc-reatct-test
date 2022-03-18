@@ -32,17 +32,17 @@ const HotelSingle: React.FC = () => {
                     <div className="p-5 space-y-4">
                         <div>
                             <h3 className="text-gray-600 font-extrabold text-lg">
-                                {hotelSingle?.name}
+                                {hotelSingle?.name ?? <span className="flex w-48 h-6 bg-gray-400 animate-pulse" />}
                             </h3>
                             <p className="text-gray-400">
-                                Cidade: {hotelSingle?.cityName}
+                                Cidade: {hotelSingle?.cityName ?? <span className="flex w-28 h-6 bg-gray-200 animate-pulse" />}
                             </p>
                         </div>
                     </div>
                 </div>
                 <h3 className="font-bold text-xl my-5">Quartos disponíveis</h3>
                 <div className="grid grid-cols-2 sm:grid-cols-3 gap-4 items-center justify-center">
-                    {hotelSingle?.rooms?.map((room: Rooms) => {
+                    {hotelSingle ? hotelSingle?.rooms?.map((room: Rooms) => {
                         return (
                             <div className="border-2 border-b-4 border-gray-200 rounded-xl hover:bg-gray-50">
                                 <div className="p-5 space-y-3">
@@ -62,7 +62,25 @@ const HotelSingle: React.FC = () => {
                                 </div>
                             </div>
                         )
-                    })}
+                    }) : Array(3).fill(
+                        <div className="border-2 border-b-4 border-gray-200 rounded-xl hover:bg-gray-50">
+                            <div className="p-5 space-y-3">
+                                <h3 className="text-gray-600 font-extrabold text-xl mb-8">
+                                    <span className="flex w-28 h-6 bg-gray-200 animate-pulse" />
+                                </h3>
+                                <div className="flex space-x-4">
+                                    <div>
+                                        <span className="flex w-16 h-6 mb-3 bg-gray-300 animate-pulse" />
+                                        <span className="flex w-28 h-6 bg-gray-200 animate-pulse" />
+                                    </div>
+                                    <div>
+                                        <span className="flex w-16 h-6 mb-3 bg-gray-300 animate-pulse" />
+                                        <span className="flex w-28 h-6 bg-gray-200 animate-pulse" />
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    )}
                 </div>
             </div>
         </div>

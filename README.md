@@ -82,11 +82,11 @@ Agora vamos codar? Primeiramente informamos que vocês podem ficar à vontade co
 
 Nossa ideia é que o projeto possua três telas básicas que utilizarão a consulta de informações dos hotéis disponíveis nas API’s.
 
-- [ ] Tela 1
+- [x] Tela 1
 
 O cliente precisará fornecer o `ID_da_Cidade` e a aplicação irá retornar uma lista com os hotéis (consultando a primeira API), exibindo o *nome do hotel*, o *nome da cidade* e um *link para poder consultar detalhes do hotel*. 
 
-- [ ] Tela 2
+- [x] Tela 2
 
 O sistema precisa consultar os detalhes do hotel (consultando a segunda API) exibindo inclusive informações dos quartos que estão disponíveis e valores.
 
