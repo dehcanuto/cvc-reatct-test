@@ -98,3 +98,27 @@ Teremos que construir dois parâmetros que irão interferir nas outras funcional
 Em caso de não preenchimento, a consulta nas telas 1 e 2 será liberadas.
 
 **Muito Boa Sorte e estamos ansiosos para receber seu código.**
+
+# Instruções de uso
+
+## Instalação
+
+```
+yarn install
+```
+
+## Rodar
+
+```
+npm start
+```
+
+## Build
+
+```
+npm run build
+```
+
+### Erro de CORS ou 402
+
+Caso dê problema na url de consulta, basta acessar o site [cors-anywhere](https://cors-anywhere.herokuapp.com/corsdemo) e clicar no botão escrito `Request temporary access to the demo server`.
