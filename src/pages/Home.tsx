@@ -9,29 +9,42 @@ const HomePage: React.FC = () => {
     const [cityID, setCityID] = useState<number>(cities[0].cityCode);
     const [cityName, setCityName] = useState<String>();
     const [hotels, setHotels] = useState<Hotel[]>([]);
+    const [hotelsFilter, setHotelsFilter] = useState<Hotel[]>([]);
+    const [filters, setFilters] = useState<number[]>([]);
+    const [load, setLoad] = useState<boolean>(false);
 
     useEffect(() => {
         setCityName(cities?.find(city => city.cityCode === Number(cityID))?.cityName);
-        setHotels([]);
-        const init = async () => setHotels(await getAllData(cityID));
+        const init = async () => {
+            setLoad(true);
+            
+            // Primeira busca para guardar de backup para os filtros.
+            if (!filters[0] && !filters[1]) setHotels(await getAllData(cityID));
+            
+            setHotelsFilter(hotels);
+            (hotelsFilter.length && filters[0]) && setHotelsFilter(hotels.filter(({ rooms }) => rooms.some(({ price }) => price.adult <= filters[0])));
+            (hotelsFilter.length && filters[1]) && setHotelsFilter(hotels.filter(({ rooms }) => rooms.some(({ price }) => price.child <= filters[1])));
+                        
+            setLoad(false);
+        }
         init();
-        console.log('hotels', hotels);
-    }, [cityID]);
+    }, [cityID, filters]);
 
     return (
         <>
             <Header
                 getCity={(e: number) => setCityID(e)}
-                getLimit={(limit: number[]) => console.log('limit', limit)}
+                getLimit={(limit: number[]) => setFilters(limit)}
             />
-            <section className="container mx-auto pt-14">
+            <section className="container mx-auto pt-8">
                 <h2 className="text-3xl font-bold my-8">Resultados para:
                     <span className="text-blue-400 ml-3">
                         {cityName}
                     </span>
                 </h2>
                 <div className="grid grid-cols-1 sm:grid-cols-4 gap-4 items-center justify-center">
-                    { hotels.length ? hotels?.map((item: Hotel) => <Card data={item}/>) : <LoadCard /> }
+                    { load ? <LoadCard /> : !hotelsFilter.length && <p className="text-lg text-gray-400">Sem resultados.</p>}
+                    { hotelsFilter && hotelsFilter?.map((item: Hotel) => <Card data={item}/>) }
                 </div>
             </section>
         </>

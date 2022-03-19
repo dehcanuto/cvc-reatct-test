@@ -8,7 +8,6 @@ const Header: React.FC<{getCity:Function, getLimit:Function}> = ({getCity, getLi
     const [maxChild, setMaxChild] = useState<number>();
 
     useEffect(() => {
-        console.log('maxAdult / child', maxAdult +'/'+maxAdult);
         getLimit([maxAdult, maxChild]);
     }, [maxAdult, maxChild]);
 
