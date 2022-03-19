@@ -30,7 +30,7 @@ const Header: React.FC<{getCity:Function, getLimit:Function}> = ({getCity, getLi
                                     onChange={(e) => getCity(e.target.value)}
                                     className="flex w-full focus:outline-none outline-none"
                                 >
-                                    {cities.map((item: City) => <option value={item.cityCode}>{item.cityName}</option>)}
+                                    {cities.map((item: City, index) => <option key={index} value={item.cityCode}>{item.cityName}</option>)}
                                 </select>
                             </div>
                             <button className="rounded-2xl border-b-4 border-b-primary-500 bg-secondary py-3 px-8 font-bold text-white">

@@ -15,16 +15,16 @@ const HomePage: React.FC = () => {
 
     useEffect(() => {
         setCityName(cities?.find(city => city.cityCode === Number(cityID))?.cityName);
-        const init = async () => {
-            setLoad(true);
-            
-            // Primeira busca para guardar de backup para os filtros.
-            if (!filters[0] && !filters[1]) setHotels(await getAllData(cityID));
-            
+        const filter = () => {
             setHotelsFilter(hotels);
+            // Filtros por maximo de valor.
             (hotelsFilter.length && filters[0]) && setHotelsFilter(hotels.filter(({ rooms }) => rooms.some(({ price }) => price.adult <= filters[0])));
             (hotelsFilter.length && filters[1]) && setHotelsFilter(hotels.filter(({ rooms }) => rooms.some(({ price }) => price.child <= filters[1])));
-                        
+        }
+        const init = async () => {
+            setLoad(true);
+            // Primeira busca para guardar de backup para os filtros.
+            (!filters[0] && !filters[1]) ? setHotels(await getAllData(cityID)) : filter();
             setLoad(false);
         }
         init();
@@ -37,7 +37,8 @@ const HomePage: React.FC = () => {
                 getLimit={(limit: number[]) => setFilters(limit)}
             />
             <section className="container mx-auto pt-14">
-                <h2 className="text-3xl font-bold my-8">Resultados para:
+                <h2 className="text-3xl font-bold my-8">
+                    Resultados para:
                     <span className="text-blue-400 ml-3">
                         {cityName}
                     </span>

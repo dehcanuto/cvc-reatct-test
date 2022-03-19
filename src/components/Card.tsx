@@ -24,16 +24,18 @@ const Card: React.FC<{data:Hotel}> = ({data}) => {
 
 export const LoadCard: React.FC = () => {    
     return <>
-        {Array(8).fill(
-            <div className="border-2 border-b-4 border-gray-200 rounded-xl hover:bg-gray-50">
-                <div className="grid grid-cols-6 p-5 gap-y-2">
-                    <div className="col-span-5 md:col-span-4 ml-4">
-                        <span className="flex w-48 h-6 mb-2 bg-gray-400 animate-pulse" />
-                        <span className="flex w-28 h-6 bg-gray-200 animate-pulse" />
+        {
+            Array.from(Array(8), (_, index) => 
+                <div key={index} className="border-2 border-b-4 border-gray-200 rounded-xl hover:bg-gray-50">
+                    <div className="grid grid-cols-6 p-5 gap-y-2">
+                        <div className="col-span-5 md:col-span-4 ml-4">
+                            <span className="flex w-48 h-6 mb-2 bg-gray-400 animate-pulse" />
+                            <span className="flex w-28 h-6 bg-gray-200 animate-pulse" />
+                        </div>
                     </div>
                 </div>
-            </div>
-        )}
+            )
+        }
     </>;
 }
 
