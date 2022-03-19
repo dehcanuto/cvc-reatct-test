@@ -1,8 +1,17 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { City } from '../interfaces/city';
 import { cities } from '../utils/city';
+import InputDefault from './Input';
 
-const Header: React.FC<{getCity:Function}> = ({getCity}) => {
+const Header: React.FC<{getCity:Function, getLimit:Function}> = ({getCity, getLimit}) => {
+    const [maxAdult, setMaxAdult] = useState<number>();
+    const [maxChild, setMaxChild] = useState<number>();
+
+    useEffect(() => {
+        console.log('maxAdult / child', maxAdult +'/'+maxAdult);
+        getLimit([maxAdult, maxChild]);
+    }, [maxAdult, maxChild]);
+
     return (
         <div className="flex justify-center items-center pt-12 bg-gradient-to-r from-secondary to-blue-500">
             <div className="container mx-auto">
@@ -27,11 +36,9 @@ const Header: React.FC<{getCity:Function}> = ({getCity}) => {
                             </button>
                         </div>
                         <div className="flex justify-between px-2 space-x-2 rounded-lg mt-3">
-                            <span className="font-bold">Valor máximo:</span>
-                            <div>
-                                <input name="max_price_adult" value="0" />
-                                <input name="max_price_adult" value="0" />
-                            </div>
+                            <span className="font-bold text-xs my-auto">Valor máximo:</span>
+                            <InputDefault label="Adulto" value={maxAdult} change={(e: number) => setMaxAdult(e)} />
+                            <InputDefault label="Criança" value={maxChild} change={(e: number) => setMaxChild(e)} />
                         </div>
                     </div>
                 </div>
