@@ -36,7 +36,7 @@ const HomePage: React.FC = () => {
                 getCity={(e: number) => setCityID(e)}
                 getLimit={(limit: number[]) => setFilters(limit)}
             />
-            <section className="container mx-auto pt-8">
+            <section className="container mx-auto pt-14">
                 <h2 className="text-3xl font-bold my-8">Resultados para:
                     <span className="text-blue-400 ml-3">
                         {cityName}

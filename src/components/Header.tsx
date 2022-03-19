@@ -21,7 +21,7 @@ const Header: React.FC<{getCity:Function, getLimit:Function}> = ({getCity, getLi
                             Escolha a cidade para a <span className="text-primary">viagem dos seus sonhos</span>
                         </h1>
                     </div>
-                    <div className="max-w-xl bg-white shadow-lg rounded-lg py-4 px-3 mx-auto mt-8 -mb-5">
+                    <div className="max-w-xl bg-white shadow-lg rounded-lg py-4 px-3 mx-auto mt-8 -mb-12">
                         <div className="flex justify-between px-2 space-x-2 rounded-lg">
                             <div className="relative flex-auto border-2 border-b-4 border-gray-200 rounded-xl px-4 py-2 pt-3">
                                 <label className="absolute left-4 -top-2 text-xs font-bold bg-white px-2">Cidade</label>
