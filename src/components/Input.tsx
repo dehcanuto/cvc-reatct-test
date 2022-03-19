@@ -12,9 +12,10 @@ const InputDefault: React.FC<Input> = ({label, value, change}) => {
             <input
                 name="max_price_adult"
                 value={value}
+                min={0}
                 type="number"
                 className="pl-6 focus:outline-none outline-none bg-transparent border-none"
-                onChange={(e) => change(e.target.valueAsNumber)}
+                onChange={(e) => change(e.target.valueAsNumber ?? 0)}
             />
         </div>
     );

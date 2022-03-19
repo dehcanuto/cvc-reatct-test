@@ -13,18 +13,28 @@ const HomePage: React.FC = () => {
     const [filters, setFilters] = useState<number[]>([]);
     const [load, setLoad] = useState<boolean>(false);
 
+    const filter = () => {
+        console.log('filter', filters[1] ?? 9999);
+        // Filtros por maximo de valor.
+        setHotelsFilter(
+            hotels.filter(({ rooms }) => 
+                rooms.some(({ price }) => price.adult <= (filters[0] ?? 9999) && price.child <= (filters[1] ?? 9999))
+            )
+        );
+    }
+
     useEffect(() => {
         setCityName(cities?.find(city => city.cityCode === Number(cityID))?.cityName);
-        const filter = () => {
-            setHotelsFilter(hotels);
-            // Filtros por maximo de valor.
-            (hotelsFilter.length && filters[0]) && setHotelsFilter(hotels.filter(({ rooms }) => rooms.some(({ price }) => price.adult <= filters[0])));
-            (hotelsFilter.length && filters[1]) && setHotelsFilter(hotels.filter(({ rooms }) => rooms.some(({ price }) => price.child <= filters[1])));
-        }
         const init = async () => {
             setLoad(true);
+            
+            let results = [];
             // Primeira busca para guardar de backup para os filtros.
-            (!filters[0] && !filters[1]) ? setHotels(await getAllData(cityID)) : filter();
+            (!filters[0] && !filters[1]) ? results = await getAllData(cityID) : filter();
+
+            setHotels(await results);
+            setHotelsFilter(await results);         
+
             setLoad(false);
         }
         init();
