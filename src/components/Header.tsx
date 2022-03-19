@@ -26,6 +26,13 @@ const Header: React.FC<{getCity:Function}> = ({getCity}) => {
                                 Buscar
                             </button>
                         </div>
+                        <div className="flex justify-between px-2 space-x-2 rounded-lg mt-3">
+                            <span className="font-bold">Valor máximo:</span>
+                            <div>
+                                <input name="max_price_adult" value="0" />
+                                <input name="max_price_adult" value="0" />
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
