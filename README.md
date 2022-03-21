@@ -90,7 +90,7 @@ O cliente precisará fornecer o `ID_da_Cidade` e a aplicação irá retornar uma
 
 O sistema precisa consultar os detalhes do hotel (consultando a segunda API) exibindo inclusive informações dos quartos que estão disponíveis e valores.
 
-- [ ] Tela 3
+- [x] Tela 3
 
 Teremos que construir dois parâmetros que irão interferir nas outras funcionalidades:
 - Valor máximo por adulto; Só poderão exibir os quartos com esse valor máximo por adulto;
