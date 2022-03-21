@@ -16,9 +16,9 @@ const Header: React.FC<{getCity:Function, getLimit:Function}> = ({getCity, getLi
             <div className="container mx-auto">
                 <div className="flex-1 justify-center items-center">
                     <div className="d-flex mx-auto text-white text-center">
-                        <img className="d-flex w-32 mx-auto mb-4" src="assets/image/cvc-logo.png" alt="CVC Logo"/>
-                        <h1 className="font-bold text-white text-4xl">
-                            Escolha a cidade para a <span className="text-primary">viagem dos seus sonhos</span>
+                        <img className="d-flex w-24 sm:w-32 mx-auto mb-4" src="assets/image/cvc-logo.png" alt="CVC Logo"/>
+                        <h1 className="font-bold text-white text-2xl sm:text-4xl">
+                            Escolha a <span className="text-primary">viagem dos seus sonhos</span>
                         </h1>
                     </div>
                     <div className="max-w-xl bg-white shadow-lg rounded-lg py-4 px-3 mx-auto mt-8 -mb-12">

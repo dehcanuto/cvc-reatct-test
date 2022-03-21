@@ -11,34 +11,45 @@ const HomePage: React.FC = () => {
     const [hotels, setHotels] = useState<Hotel[]>([]);
     const [hotelsFilter, setHotelsFilter] = useState<Hotel[]>([]);
     const [filters, setFilters] = useState<number[]>([]);
-    const [load, setLoad] = useState<boolean>(false);
+    const [load, setLoad] = useState<boolean>(true);
 
-    const filter = () => {
-        console.log('filter', filters[1] ?? 9999);
-        // Filtros por maximo de valor.
-        setHotelsFilter(
-            hotels.filter(({ rooms }) => 
-                rooms.some(({ price }) => price.adult <= (filters[0] ?? 9999) && price.child <= (filters[1] ?? 9999))
-            )
-        );
-    }
-
+    // Funciona apenas para disparar quando o `cityID` muda.
     useEffect(() => {
         setCityName(cities?.find(city => city.cityCode === Number(cityID))?.cityName);
         const init = async () => {
             setLoad(true);
             
-            let results = [];
-            // Primeira busca para guardar de backup para os filtros.
-            (!filters[0] && !filters[1]) ? results = await getAllData(cityID) : filter();
+                let results = await getAllData(cityID);
 
-            setHotels(await results);
-            setHotelsFilter(await results);         
+                setHotels(await results);
+                setHotelsFilter(await results);
 
             setLoad(false);
         }
         init();
-    }, [cityID, filters]);
+    }, [cityID]);
+
+    // Separei para não interferir nas buscas na api e usar apenas dados já guardados no estado.
+    useEffect(() => {
+        const filter = async () => {
+            let result = hotels;
+            setLoad(true);
+            // Filtros por maximo de valor.
+            setHotelsFilter(
+                result.filter(({ rooms }) =>
+                    rooms.some(({ price }) =>
+                        price.adult <= (filters[0] ?? 9999) &&
+                        price.child <= (filters[1] ?? 9999)
+                    )
+                )
+            );
+            setLoad(false);
+        }
+        filter();
+    }, [filters, hotels]);
+
+    console.log('load', load);
+    console.log('!hotelsFilter.length', !hotelsFilter.length);
 
     return (
         <>
@@ -47,15 +58,15 @@ const HomePage: React.FC = () => {
                 getLimit={(limit: number[]) => setFilters(limit)}
             />
             <section className="container mx-auto pt-14">
-                <h2 className="text-3xl font-bold my-8">
+                <h2 className="text-center text-xl sm:text-left sm:text-3xl font-bold my-8">
                     Resultados para:
                     <span className="text-blue-400 ml-3">
                         {cityName}
                     </span>
                 </h2>
                 <div className="grid grid-cols-1 sm:grid-cols-4 gap-4 items-center justify-center">
-                    { load ? <LoadCard /> : !hotelsFilter.length && <p className="text-lg text-gray-400">Sem resultados.</p>}
-                    { hotelsFilter && hotelsFilter?.map((item: Hotel) => <Card data={item}/>) }
+                    { load ? <LoadCard /> : !hotelsFilter.length && <p className="text-lg text-gray-400">Sem resultados.</p> }
+                    { hotelsFilter && hotelsFilter?.map((item: Hotel, index) => <Card key={index} data={item}/>) }
                 </div>
             </section>
         </>

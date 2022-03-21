@@ -18,7 +18,7 @@ const HotelSingle: React.FC = () => {
             <header className="flex justify-center items-center bg-gradient-to-r from-secondary to-blue-500 py-8">
                 <img className="d-flex w-20 mx-auto" src="assets/image/cvc-logo.png" alt="CVC Logo"/>
             </header>
-            <div className="max-w-4xl mx-auto mt-5">
+            <div className="max-w-4xl p-4 mx-auto mt-5">
                 <NavLink to={'/'} className="flex font-bold text-2xl text-blue-500 mb-8">
                     <svg fill="currentColor" viewBox="0 0 24 24" width="2rem">
                         <path d="M21 11H6.414l5.293-5.293-1.414-1.414L2.586 12l7.707 7.707 1.414-1.414L6.414 13H21z" />
@@ -41,7 +41,7 @@ const HotelSingle: React.FC = () => {
                     </div>
                 </div>
                 <h3 className="font-bold text-xl my-5">Quartos disponíveis</h3>
-                <div className="grid grid-cols-2 sm:grid-cols-3 gap-4 items-center justify-center">
+                <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 items-center justify-center">
                     {hotelSingle ? hotelSingle?.rooms?.map((room: Rooms) => {
                         return (
                             <div className="border-2 border-b-4 border-gray-200 rounded-xl hover:bg-gray-50">
