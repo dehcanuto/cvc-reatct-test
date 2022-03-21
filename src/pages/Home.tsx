@@ -33,7 +33,7 @@ const HomePage: React.FC = () => {
         filter()
             .then(() => setLoad(false))
             .catch(console.error);
-    }, [filters]);
+    }, [filters, hotels]);
 
     // Funciona apenas para disparar quando o `cityID` muda.
     useEffect(() => {

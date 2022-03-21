@@ -9,6 +9,7 @@ const Header: React.FC<{getCity:Function, getLimit:Function}> = ({getCity, getLi
 
     useEffect(() => {
         getLimit([maxAdult, maxChild]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [maxAdult, maxChild]);
 
     return (

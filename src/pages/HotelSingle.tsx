@@ -10,8 +10,7 @@ const HotelSingle: React.FC = () => {
     useEffect(() => {
         const init = async () => setHotelSingle(await getSingle(id));
         init();
-        console.log('hotelSingle', hotelSingle);
-    }, [id]);
+    }, [id, hotelSingle]);
 
     return (
         <div className="App">
