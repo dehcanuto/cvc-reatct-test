@@ -15,25 +15,23 @@ const HomePage: React.FC = () => {
 
     // Funciona apenas para disparar quando o `cityID` muda.
     useEffect(() => {
+        setLoad(true);
         setCityName(cities?.find(city => city.cityCode === Number(cityID))?.cityName);
         const init = async () => {
-            setLoad(true);
-            
-                let results = await getAllData(cityID);
-
-                setHotels(await results);
-                setHotelsFilter(await results);
-
-            setLoad(false);
+            let results = await getAllData(cityID);
+            setHotels(await results);
+            setHotelsFilter(await results);
         }
-        init();
+        init()
+            .then(() => {setLoad(false)})
+            .catch(console.error);
     }, [cityID]);
 
     // Separei para não interferir nas buscas na api e usar apenas dados já guardados no estado.
     useEffect(() => {
+        setLoad(true);
         const filter = async () => {
             let result = hotels;
-            setLoad(true);
             // Filtros por maximo de valor.
             setHotelsFilter(
                 result.filter(({ rooms }) =>
@@ -43,13 +41,13 @@ const HomePage: React.FC = () => {
                     )
                 )
             );
-            setLoad(false);
         }
-        filter();
-    }, [filters, hotels]);
+        filter()
+            .then(() => {setLoad(false)})
+            .catch(console.error);
+    }, [filters]);
 
     console.log('load', load);
-    console.log('!hotelsFilter.length', !hotelsFilter.length);
 
     return (
         <>
