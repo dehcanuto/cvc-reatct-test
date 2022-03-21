@@ -6,7 +6,7 @@ interface Input {
 
 const InputDefault: React.FC<Input> = ({label, value, change}) => {
     return (
-        <div className="relative flex w-1/3 sm:w-full border-2 border-b-4 border-gray-200 rounded-xl px-4 py-2 pt-3">
+        <div className="relative flex w-1/2 sm:w-full border-2 border-b-4 border-gray-200 rounded-xl px-4 py-2 pt-3">
             <label className="absolute left-4 -top-2 text-xs font-bold bg-white px-2">{label}</label>
             <span className="absolute left-3 text-sm text-gray-400 my-auto mr-2">R$</span>
             <input

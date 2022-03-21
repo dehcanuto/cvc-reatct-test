@@ -15,7 +15,7 @@ const HomePage: React.FC = () => {
 
     // Separei para não interferir nas buscas na api e usar apenas dados já guardados no estado.
     useEffect(() => {
-        console.log('!hotels', !hotels);
+        // Para o filtro caso não hajam resultados de hoteis.
         if (!hotels.length) return;
         setLoad(true);
         const filter = async () => {
@@ -31,7 +31,7 @@ const HomePage: React.FC = () => {
             );
         }
         filter()
-            .then(() => {setLoad(false); console.log('load filter', load);})
+            .then(() => setLoad(false))
             .catch(console.error);
     }, [filters]);
 
@@ -46,11 +46,9 @@ const HomePage: React.FC = () => {
             setHotelsFilter(await results);
         }
         init()
-            .then(() => {setLoad(false); console.log('load init', load);})
+            .then(() => setLoad(false))
             .catch(console.error);
     }, [cityID]);
-
-    console.log('load', load);
 
     return (
         <>
